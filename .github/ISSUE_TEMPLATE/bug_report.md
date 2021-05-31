@@ -16,5 +16,5 @@ please provide the following information:
 * Any details about your local setup that might be helpful in troubleshooting.
 * Detailed steps to reproduce the bug.
 
-If you found an error in the book, please report it at 
+If you found an error in the book, please report it at
 https://www.oreilly.com/catalog/errata.csp?isbn=0636920260912.

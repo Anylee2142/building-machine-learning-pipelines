@@ -1,6 +1,7 @@
 """ Example module to convert csv data to TFRecords
 """
 
+import os
 import csv
 
 import tensorflow as tf
@@ -35,10 +36,16 @@ def convert_zipcode_to_int(zipcode):
 
 
 original_data_file = "../../data/consumer_complaints_with_narrative.csv"
+tfrecords_folder_path = "../../tfrecord_data"
 tfrecords_filename = "consumer-complaints.tfrecords"
-tf_record_writer = tf.io.TFRecordWriter(tfrecords_filename)
+if not os.path.exists(tfrecords_folder_path):
+    os.makedirs(tfrecords_folder_path)
+tf_record_writer = tf.io.TFRecordWriter(
+    os.path.join(tfrecords_folder_path, tfrecords_filename)
+)
 
 with open(original_data_file) as csv_file:
+    # If from Databases(e.g. RDB, or NoSQL), switch csv_file to your "dataframe"
     reader = csv.DictReader(csv_file, delimiter=",", quotechar='"')
     for row in tqdm(reader):
         row = clean_rows(row)
